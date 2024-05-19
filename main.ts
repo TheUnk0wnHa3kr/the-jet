@@ -146,6 +146,10 @@ TheMax = sprites.create(assets.image`Form1`, SpriteKind.Player)
 controller.moveSprite(TheMax)
 TheMax.setStayInScreen(true)
 info.setLife(3)
+let enemyspeed = 20
+game.onUpdateInterval(5000, function () {
+    enemyspeed += 10
+})
 game.onUpdateInterval(2000, function () {
     EnemyShip = sprites.create(assets.image`EnemyShip`, SpriteKind.Enemy)
     EnemyShip.x = scene.screenWidth()

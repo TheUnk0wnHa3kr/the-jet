@@ -15,11 +15,11 @@ def on_on_score():
     game.set_game_over_scoring_type(game.ScoringType.HIGH_SCORE)
     game.game_over(True)
     game.set_game_over_effect(True, effects.confetti)
-    game.set_game_over_message(True, "YOU ARE THE CHAMPION")
-info.on_score(50, on_on_score)
+    game.set_game_over_message(True, "BANANA")
+info.on_score(100, on_on_score)
 
 def on_on_overlap2(sprite, otherSprite):
-    sprites.destroy(EnemyShip)
+    sprites.destroy(otherSprite)
     info.change_score_by(2)
 sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_on_overlap2)
 
@@ -162,6 +162,6 @@ def on_update_interval():
         EnemyShip
     """), SpriteKind.enemy)
     EnemyShip.x = scene.screen_width()
-    EnemyShip.vx = -65
+    EnemyShip.vx = -50
     EnemyShip.y = randint(10, scene.screen_height())
 game.on_update_interval(2000, on_update_interval)
