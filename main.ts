@@ -6,17 +6,16 @@ sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite2, otherS
     sprites.destroy(otherSprite2, effects.disintegrate, 500)
     scene.cameraShake(4, 500)
 })
-info.onScore(50, function () {
+info.onScore(100, function () {
     game.setGameOverScoringType(game.ScoringType.HighScore)
     game.gameOver(true)
     game.setGameOverEffect(true, effects.confetti)
-    game.setGameOverMessage(true, "YOU ARE THE CHAMPION")
+    game.setGameOverMessage(true, "BANANA")
 })
 sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
-    sprites.destroy(EnemyShip)
+    sprites.destroy(otherSprite)
     info.changeScoreBy(2)
 })
-let statusbar: StatusBarSprite = null
 let EnemyShip: Sprite = null
 let projectile: Sprite = null
 let TheMax: Sprite = null
@@ -150,7 +149,6 @@ info.setLife(3)
 game.onUpdateInterval(2000, function () {
     EnemyShip = sprites.create(assets.image`EnemyShip`, SpriteKind.Enemy)
     EnemyShip.x = scene.screenWidth()
-    EnemyShip.vx = -65
+    EnemyShip.vx = -50
     EnemyShip.y = randint(10, scene.screenHeight())
-    statusbar = statusbars.create(20, 4, StatusBarKind.EnemyHealth)
 })
