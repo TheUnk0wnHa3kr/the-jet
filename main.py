@@ -5,6 +5,12 @@ def on_a_pressed():
     """), TheMax, 100, 0)
 controller.A.on_event(ControllerButtonEvent.PRESSED, on_a_pressed)
 
+def on_on_overlap(sprite2, otherSprite2):
+    info.change_life_by(-1)
+    sprites.destroy(otherSprite2, effects.disintegrate, 500)
+    scene.camera_shake(4, 500)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
+
 def on_on_score():
     game.set_game_over_scoring_type(game.ScoringType.HIGH_SCORE)
     game.game_over(True)
@@ -12,16 +18,10 @@ def on_on_score():
     game.set_game_over_message(True, "YOU ARE THE CHAMPION")
 info.on_score(50, on_on_score)
 
-def on_on_overlap(sprite, otherSprite):
+def on_on_overlap2(sprite, otherSprite):
     sprites.destroy(EnemyShip)
     info.change_score_by(2)
-sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_on_overlap)
-
-def on_on_overlap2(sprite2, otherSprite2):
-    info.change_life_by(-1)
-    sprites.destroy(otherSprite2, effects.disintegrate, 500)
-    scene.camera_shake(4, 500)
-sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap2)
+sprites.on_overlap(SpriteKind.projectile, SpriteKind.enemy, on_on_overlap2)
 
 EnemyShip: Sprite = None
 projectile: Sprite = None
